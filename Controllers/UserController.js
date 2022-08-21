@@ -25,3 +25,13 @@ export const giveToken = async (req, res) => {
   });
   res.status(200).json({ result, token });
 };
+
+// get all user info from db
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
