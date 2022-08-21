@@ -26,6 +26,23 @@ export const giveToken = async (req, res) => {
   res.status(200).json({ result, token });
 };
 
+// get a User from db
+export const getUser = async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const user = await UserModel.findOne({ email: email });
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json("No such user exists");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 // get all user info from db
 export const getAllUsers = async (req, res) => {
   try {
