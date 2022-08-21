@@ -83,3 +83,13 @@ export const updateUser = async (req, res) => {
     res.status(403).json("Access Denied! you can only update your own profile");
   }
 };
+
+// chack admin
+export const getAdmin = async (req, res) => {
+  const email = req.params.email;
+  const user = await UserModel.findOne({ email: email });
+  const isAdmin = user?.role === true;
+  res.send({ admin: isAdmin });
+};
+
+export const MakeAdmin = async (req, res) => {};

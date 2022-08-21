@@ -4,6 +4,7 @@ import {
   getUser,
   giveToken,
   updateUser,
+  getAdmin,
 } from "../Controllers/UserController.js";
 import verifyJWT from "../middleware/verifyJWT.js";
 
@@ -20,5 +21,10 @@ router.get("/", getAllUsers);
 
 // update User
 router.put("/userprofile/:email", verifyJWT, updateUser);
+
+// chack admin
+router.get("/admin/:email", verifyJWT, getAdmin);
+
+//
 
 export default router;
