@@ -1,10 +1,11 @@
-import UserModel from "../Models/UserModule";
+import UserModel from "../Models/UserModule.js";
 
 const verifyAdmin = async (req, res, next) => {
   const requester = req.user;
   const requesterAccount = await UserModel.findOne({
     email: requester,
   });
+
   if (requesterAccount.role === true) {
     next();
   } else {

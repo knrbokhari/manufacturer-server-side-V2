@@ -92,4 +92,18 @@ export const getAdmin = async (req, res) => {
   res.send({ admin: isAdmin });
 };
 
-export const MakeAdmin = async (req, res) => {};
+// make admin
+export const makeAdmin = async (req, res) => {
+  const email = req.params.email;
+  try {
+    const result = await UserModel.updateOne(
+      { email: email },
+      {
+        $set: { role: true },
+      }
+    );
+    res.status(200).send(result);
+  } catch (err) {
+    res.status(500).json(error);
+  }
+};

@@ -5,7 +5,9 @@ import {
   giveToken,
   updateUser,
   getAdmin,
+  makeAdmin,
 } from "../Controllers/UserController.js";
+import verifyAdmin from "../middleware/verifyAdmin.js";
 import verifyJWT from "../middleware/verifyJWT.js";
 
 const router = express.Router();
@@ -26,5 +28,6 @@ router.put("/userprofile/:email", verifyJWT, updateUser);
 router.get("/admin/:email", verifyJWT, getAdmin);
 
 //
+router.put("/admin/:email", verifyJWT, verifyAdmin, makeAdmin);
 
 export default router;
