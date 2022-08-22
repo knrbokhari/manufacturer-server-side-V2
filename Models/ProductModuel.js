@@ -31,4 +31,5 @@ const UserSchema = mongoose.Schema(
 );
 
 const UserModel = mongoose.model("Products", UserSchema);
+
 export default UserModel;
