@@ -30,6 +30,17 @@ export const getAllProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = async (req, res) => {};
+export const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const data = req.body;
+  try {
+    const product = await ProductModuel.findByIdAndUpdate(id, data, {
+      new: true,
+    });
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 export const deleteProduct = async (req, res) => {};
