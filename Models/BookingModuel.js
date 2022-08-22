@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const UserSchema = mongoose.Schema(
   {
     productId: {
-      type: Number,
+      type: String,
       required: true,
     },
     productName: {
