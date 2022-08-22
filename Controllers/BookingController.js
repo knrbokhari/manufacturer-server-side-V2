@@ -35,6 +35,19 @@ export const createBooking = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// get a booking by id
 export const getBooking = async (req, res) => {};
-export const GetAllBooking = async (req, res) => {};
+
+// find order for singel person booking
+export const userBooking = async (req, res) => {};
+
+export const GetAllBooking = async (req, res) => {
+  try {
+    const bookings = await BookingModuel.find();
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 export const deleteBooking = async (req, res) => {};
