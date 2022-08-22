@@ -48,7 +48,21 @@ export const getBooking = async (req, res) => {
 };
 
 // find order for singel person booking
-export const userBooking = async (req, res) => {};
+export const userBooking = async (req, res) => {
+  const user = req.user;
+  const email = req.params.email;
+
+  try {
+    if (user === email) {
+      const bookings = await BookingModuel.find({ email: user });
+      res.status(200).json(bookings);
+    } else {
+      res.status(403).json("Access Denied!");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 // get all booking
 export const GetAllBooking = async (req, res) => {

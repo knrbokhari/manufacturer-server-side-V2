@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createBooking,
+  GetAllBooking,
   getBooking,
   userBooking,
 } from "../Controllers/BookingController.js";
@@ -12,10 +13,13 @@ const router = express.Router();
 // Insert a booking
 router.put("/", verifyJWT, createBooking);
 
-// get all booking
-router.get("/", verifyJWT, verifyAdmin, userBooking);
-
 // get a booking by id
 router.get("/:id", verifyJWT, getBooking);
+
+// get all booking
+router.get("/", verifyJWT, verifyAdmin, GetAllBooking);
+
+// get all booking for a single
+router.get("/userbooking/:email", verifyJWT, userBooking);
 
 export default router;
