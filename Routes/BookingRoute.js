@@ -13,6 +13,9 @@ const router = express.Router();
 router.put("/", verifyJWT, createBooking);
 
 // get all booking
-router.get("/", verifyJWT, userBooking);
+router.get("/", verifyJWT, verifyAdmin, userBooking);
+
+// get a booking by id
+router.get("/:id", verifyJWT, getBooking);
 
 export default router;

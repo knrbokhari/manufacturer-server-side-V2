@@ -37,11 +37,20 @@ export const createBooking = async (req, res) => {
 };
 
 // get a booking by id
-export const getBooking = async (req, res) => {};
+export const getBooking = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const userBooking = await BookingModuel.findById(id);
+    res.status(200).json(userBooking);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
 
 // find order for singel person booking
 export const userBooking = async (req, res) => {};
 
+// get all booking
 export const GetAllBooking = async (req, res) => {
   try {
     const bookings = await BookingModuel.find();
