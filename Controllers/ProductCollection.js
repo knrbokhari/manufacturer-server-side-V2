@@ -5,7 +5,7 @@ export const createProduct = async (req, res) => {
 
   try {
     await newProduct.save();
-    res.status(200).json("Post created!");
+    res.status(200).json("Product Created successfully!");
   } catch (error) {
     res.status(500).json(error);
   }
@@ -43,4 +43,12 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-export const deleteProduct = async (req, res) => {};
+export const deleteProduct = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const product = await ProductModuel.findByIdAndDelete(id);
+    res.status(200).json("Product Deleted successfully!");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

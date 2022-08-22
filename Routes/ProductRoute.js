@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProduct,
+  deleteProduct,
   getAllProduct,
   getProduct,
   updateProduct,
@@ -21,5 +22,8 @@ router.post("/", verifyJWT, verifyAdmin, createProduct);
 
 // update a product
 router.put("/:id", verifyJWT, verifyAdmin, updateProduct);
+
+// delete product
+router.delete("/:id", verifyJWT, verifyAdmin, deleteProduct);
 
 export default router;
