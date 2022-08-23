@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  bookingAfterPayment,
   createBooking,
   GetAllBooking,
   getBooking,
@@ -21,5 +22,8 @@ router.get("/", verifyJWT, verifyAdmin, GetAllBooking);
 
 // get all booking for singel user
 router.get("/userbooking/:email", verifyJWT, userBooking);
+
+// booking after payment
+router.patch("/:id", verifyJWT, bookingAfterPayment);
 
 export default router;

@@ -71,5 +71,20 @@ export const GetAllBooking = async (req, res) => {
   }
 };
 
-// 
+// booking after payment
+export const bookingAfterPayment = async (req, res) => {
+  const id = req.params.id;
+  const payment = req.body;
+  try {
+    const updatedBooking = await BookingModuel.findByIdAndUpdate(id, {
+      paid: true,
+      transactionId: payment.transactionId,
+    });
+    res.status(200).json(updatedBooking);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+//
 export const deleteBooking = async (req, res) => {};
