@@ -19,7 +19,7 @@ router.get("/:id", verifyJWT, getBooking);
 // get all booking
 router.get("/", verifyJWT, verifyAdmin, GetAllBooking);
 
-// get all booking for a single
+// get all booking for singel user
 router.get("/userbooking/:email", verifyJWT, userBooking);
 
 export default router;

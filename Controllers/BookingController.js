@@ -13,11 +13,9 @@ export const createBooking = async (req, res) => {
 
   // check unpaid booking
   const exists = await BookingModuel.findOne(query);
-
   if (exists) {
     return res.status(409).json({ success: false });
   }
-
   const result = new BookingModuel(data);
 
   try {
@@ -29,7 +27,6 @@ export const createBooking = async (req, res) => {
       { quantity: data.quantity - data.order },
       { new: true }
     );
-
     res.status(200).json({ success: true });
   } catch (error) {
     res.status(500).json(error);
@@ -73,4 +70,6 @@ export const GetAllBooking = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// 
 export const deleteBooking = async (req, res) => {};

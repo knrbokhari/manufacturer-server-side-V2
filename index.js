@@ -6,6 +6,7 @@ import cors from "cors";
 import UserRoute from "./Routes/UserRoute.js";
 import ProductRoute from "./Routes/ProductRoute.js";
 import BookingRoute from "./Routes/BookingRoute.js";
+import PaymentRoute from "./Routes/PaymentRoute.js";
 
 // middlewares
 dotenv.config();
@@ -35,6 +36,7 @@ mongoose
 app.use("/user", UserRoute);
 app.use("/product", ProductRoute);
 app.use("/booking", BookingRoute);
+app.use("/payment", PaymentRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
