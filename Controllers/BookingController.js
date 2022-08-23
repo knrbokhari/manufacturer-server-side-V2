@@ -1,5 +1,6 @@
 import BookingModuel from "../Models/BookingModuel.js";
 import ProductModuel from "../Models/ProductModuel.js";
+import PaymentModuel from "../Models/PaymentModuel.js";
 
 // Insert a booking
 export const createBooking = async (req, res) => {
@@ -74,12 +75,17 @@ export const GetAllBooking = async (req, res) => {
 // booking after payment
 export const bookingAfterPayment = async (req, res) => {
   const id = req.params.id;
-  const payment = req.body;
+  const data = req.body;
+
+  const result = new PaymentModuel(data);
+
   try {
     const updatedBooking = await BookingModuel.findByIdAndUpdate(id, {
       paid: true,
-      transactionId: payment.transactionId,
+      transactionId: data.transactionId,
     });
+
+    await result.save();
     res.status(200).json(updatedBooking);
   } catch (error) {
     res.status(500).json(error);
@@ -87,4 +93,22 @@ export const bookingAfterPayment = async (req, res) => {
 };
 
 //
-export const deleteBooking = async (req, res) => {};
+export const cancelBooking = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const booking = await BookingModuel.findById(id);
+    const product = await ProductModuel.findById(booking.productId);
+
+    const updateProduct = await ProductModuel.findByIdAndUpdate(
+      booking.productId,
+      {
+        quantity: product.quantity + booking.order,
+      },
+      { new: true }
+    );
+    const deleteBooking = await BookingModuel.findByIdAndDelete(id);
+    res.status(200).json("Cancel Successful!");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};

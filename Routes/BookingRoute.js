@@ -1,6 +1,7 @@
 import express from "express";
 import {
   bookingAfterPayment,
+  cancelBooking,
   createBooking,
   GetAllBooking,
   getBooking,
@@ -25,5 +26,8 @@ router.get("/userbooking/:email", verifyJWT, userBooking);
 
 // booking after payment
 router.patch("/:id", verifyJWT, bookingAfterPayment);
+
+// CANCEL Booking
+router.put("/:id", verifyJWT, cancelBooking);
 
 export default router;
