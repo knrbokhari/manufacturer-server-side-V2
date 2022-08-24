@@ -25,9 +25,9 @@ router.get("/", getAllUsers);
 router.put("/userprofile/:email", verifyJWT, updateUser);
 
 // chack admin
-router.get("/admin/:email", verifyJWT, getAdmin);
+router.get("/admin/:email", getAdmin);
 
-//
+// make admin
 router.put("/admin/:email", verifyJWT, verifyAdmin, makeAdmin);
 
 export default router;

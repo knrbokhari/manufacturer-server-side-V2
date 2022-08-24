@@ -12,19 +12,22 @@ export const giveToken = async (req, res) => {
 
   if (!checkEmail) {
     user = new UserModel(req.body);
+    const result = await user.save();
   } else {
-    user = await UserModel.findOneAndUpdate({ email: email }, req.body, {
-      new: true,
-    });
+    user = checkEmail;
+    // await UserModel.findOneAndUpdate({ email: email }, req.body, {
+    //   new: true,
+    // });
   }
 
-  const result = await user.save();
+  console.log(user);
+
   // jwt token
   const token = jwt.sign({ email: userData.email }, process.env.JWTKEY, {
-    expiresIn: "1d",
+    expiresIn: "1h",
   });
-  console.log({ result, token });
-  res.status(200).json({ result, token });
+  // console.log({ result, token });
+  res.status(200).json({ user, token });
 };
 
 // get a User from db
