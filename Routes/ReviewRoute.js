@@ -1,5 +1,9 @@
 import express from "express";
-import { createReview, getAllReview } from "../Controllers/ReviewController.js";
+import {
+  createReview,
+  getAllReview,
+  getUserReview,
+} from "../Controllers/ReviewController.js";
 import verifyJWT from "../middleware/verifyJWT.js";
 
 const router = express.Router();
@@ -9,5 +13,8 @@ router.post("/", verifyJWT, createReview);
 
 // get all review
 router.get("/", getAllReview);
+
+// get user review
+router.get("/:email", verifyJWT, getUserReview);
 
 export default router;

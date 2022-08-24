@@ -24,9 +24,9 @@ export const giveToken = async (req, res) => {
 
   // jwt token
   const token = jwt.sign({ email: userData.email }, process.env.JWTKEY, {
-    expiresIn: "1h",
+    expiresIn: "1d",
   });
-  // console.log({ result, token });
+
   res.status(200).json({ user, token });
 };
 

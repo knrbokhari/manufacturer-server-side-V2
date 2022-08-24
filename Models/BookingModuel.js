@@ -35,6 +35,7 @@ const UserSchema = mongoose.Schema(
       default: false,
     },
     transactionId: String,
+    review: String,
   },
   { timestamps: true }
 );
