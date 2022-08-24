@@ -92,7 +92,7 @@ export const bookingAfterPayment = async (req, res) => {
   }
 };
 
-//
+// cancel Booking
 export const cancelBooking = async (req, res) => {
   const id = req.params.id;
   try {
