@@ -5,6 +5,7 @@ import {
   createBooking,
   GetAllBooking,
   getBooking,
+  shipping,
   userBooking,
 } from "../Controllers/BookingController.js";
 import verifyAdmin from "../middleware/verifyAdmin.js";
@@ -26,6 +27,9 @@ router.get("/userbooking/:email", verifyJWT, userBooking);
 
 // booking after payment
 router.patch("/:id", verifyJWT, bookingAfterPayment);
+
+// product shipped
+router.patch("/shipping/:id", verifyJWT, verifyAdmin, shipping);
 
 // CANCEL Booking
 router.put("/:id", verifyJWT, cancelBooking);

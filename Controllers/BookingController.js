@@ -92,6 +92,21 @@ export const bookingAfterPayment = async (req, res) => {
   }
 };
 
+// shipping
+export const shipping = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const updatedBooking = await BookingModuel.findByIdAndUpdate(id, {
+      status: true,
+    });
+
+    res.status(200).json("Product Shipped!");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 // cancel Booking
 export const cancelBooking = async (req, res) => {
   const id = req.params.id;
